@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+	"version": "1.1.0",
+	"name": "Video Screenshotting Tool for Youtube",
+	"description": "Adds a button to take screenshots of a Youtube video in the video's settings menu.",
+	"author": "person4268",
+	"content_scripts": [
+		{
+			"matches": ["*://*.youtube.com/watch*"],
+			"js": ["youtube-screenshot.js"],
+			"run_at": "document_end"
+		}
+	]
+}
