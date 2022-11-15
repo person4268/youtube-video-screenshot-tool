@@ -74,4 +74,4 @@ function pollPanelMenu() {
 		createEntry();
 	}
 }
-pollPanelMenuInterval = setInterval(pollPanelMenu, 200);
+pollPanelMenuInterval = setInterval(pollPanelMenu, 500);

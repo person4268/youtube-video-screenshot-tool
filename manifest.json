@@ -6,7 +6,7 @@
 	"author": "person4268",
 	"content_scripts": [
 		{
-			"matches": ["*://*.youtube.com/watch*"],
+			"matches": ["*://*.youtube.com/*"],
 			"js": ["youtube-screenshot.js"],
 			"run_at": "document_end"
 		}
