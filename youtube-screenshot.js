@@ -24,8 +24,23 @@ function dataURItoBlob(dataURI) {
   
   }
 
+/**
+ * Have noted a case before where there are multiple video elements, and one has a width and height of 0,
+ * likely do do with video preview feature. 
+ */
+function getVideoWithResolutionGtZero() {
+	var videos = document.getElementsByClassName("video-stream html5-main-video");
+	for(let i = 0; i < videos.length; i++) {
+		if(videos[i].nodeName === "VIDEO" && videos[i].videoWidth > 0 && videos[i].videoHeight > 0) {
+			return videos[i];
+		} else {
+			console.warn("[youtube-video-screenshot-tool] video resolution == 0, skipping");
+		}
+	}
+}
+
 function screenshot() {
-	var video = document.getElementsByClassName("video-stream html5-main-video")[0];
+	var video = getVideoWithResolutionGtZero();
 	var canvas = document.createElement("canvas");
 	//	canvas.width = video.style.width.slice(0,-2) /* Pull it from the CSS */
 	//	canvas.height = video.style.height.slice(0,-2)
