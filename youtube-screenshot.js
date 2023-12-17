@@ -75,7 +75,12 @@ function createEntry() {
 	menuitem.append(menuitem_label);
 	menuitem.append(menuitem_content);
 
-	document.getElementsByClassName("ytp-panel-menu")[0].append(menuitem);
+	let menus = document.getElementsByClassName("ytp-panel-menu");
+
+	/* There appears to be more than one of them now for some reason */
+	for (let i = 0; i < menus.length; i++) {
+		menus[i].append(menuitem);
+	}
 
 	menuitem.addEventListener("click", screenshot);
 
