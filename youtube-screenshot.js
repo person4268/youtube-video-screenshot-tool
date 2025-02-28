@@ -41,6 +41,15 @@ function getVideoWithResolutionGtZero() {
 
 function screenshot() {
 	var video = getVideoWithResolutionGtZero();
+
+	// Unsure about ended here but it can't hurt
+	var needToSeek = video.paused || video.ended
+	if(needToSeek) {
+		// Seeking a tiny bit gets rid of the issue of the video unloading and presenting a grey image after scrolling away when paused
+		// Doing this while playing causes a stutter
+		video.cur// Unsure about ended here but it can't hurt IDTrentTime -= 1e-6;
+	}
+
 	var canvas = document.createElement("canvas");
 	//	canvas.width = video.style.width.slice(0,-2) /* Pull it from the CSS */
 	//	canvas.height = video.style.height.slice(0,-2)
@@ -52,6 +61,7 @@ function screenshot() {
 
 	var dataURI = canvas.toDataURL("image/png");
 	window.open(URL.createObjectURL(dataURItoBlob(dataURI)));
+	if(needToSeek) video.currentTime += 1e-6; // it doesn't really matter but eh
 }
 
 function createEntry() {
